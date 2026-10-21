@@ -3,8 +3,44 @@
 > 项目：超市采购辅助（菜单 Reminder）复古像素化重设计｜ 形态：静态网页（移动优先）
 > 风格定调：**16-bit 农场游戏风**（参考星露谷物语 Stardew Valley 的 UI 语言：暖木框 + 奶油底 + 硬像素描边）
 > 字体：Fusion Pixel 12px Proportional SC（缝合像素字体 · 简中，CDN 按 unicode-range 子集加载）
-> 图标：33 个手绘 12×12 像素图标（icons.js，ASCII 网格 → crispEdges SVG）
+> 图标：125 个手绘 12×12 像素图标（icons.js + ingredient-icons.js，ASCII 网格 → crispEdges SVG）
 > 版本：pixel-v1.0（与原 v3.1「可爱 × 时尚精致」版功能完全一致，仅视觉与文案游戏化）
+
+---
+
+## 0. 界面实录（docs/shots，390px 移动视口 @2x）
+
+> 以下截图由 `assets/shots_docs.py` 自动化采集（Playwright + 预置战绩数据）。
+
+**L1 首页 · 任务板**（场景带 / 三步引导 / 数据 chip / 战绩面板 / 搜索 / 菜类矩阵 / 掷骰子）
+
+![首页](docs/shots/m-home.png)
+
+**L2 挑菜 · 搜索结果**（纯文字菜品卡：菜名 / 简介 / 类型·菜系 chip / 分区签 / 加入菜篮）
+
+![挑菜](docs/shots/m-select.png)
+
+**L2 挑菜 · 已入篮态**（卡片变已入篮底 + ✓ 徽章，顶栏菜篮计数 + 悬浮「去采购」）
+
+![已入篮](docs/shots/m-select-cart.png)
+
+**L3b 总览 · 全部清单**（分区折叠、每样食材带像素小图标 / 可选·备注 chip / 用于哪几道菜、逐项打勾）
+
+![总览](docs/shots/m-overview.png)
+
+**L3 市集导览 · 分区闯关**（分区徽章 + 关卡进度点阵 + 本区贴士，逐区打勾）
+
+![导览](docs/shots/m-guide.png)
+
+**分享弹层 · 像素清单图**（canvas 实时生成的清单图：分区色条 + 像素勾选框，可保存 / 分享 / 复制文字清单）
+
+![分享](docs/shots/m-share.png)
+
+**桌面布局 · 掌机隐喻**（≥680px：App 收为 640px 柱，桌面包围田地绿底 + 格纹）
+
+![桌面首页](docs/shots/d-home.png)
+
+![桌面总览](docs/shots/d-overview.png)
 
 ---
 
@@ -66,17 +102,17 @@
 
 ## 3. Typography Rules
 
-- **Font Family**：`"Fusion Pixel 12px Proportional Simplified Chinese"`（CDN：`@vp-tw/cjk-web-fonts-fusion-pixel-font`，简体中文字子集 78 个 woff2 按 unicode-range 按需下载）；fallback `"Microsoft YaHei", "PingFang SC", sans-serif`。
+- **Font Family**：`"Fusion Pixel 12px Proportional Simplified Chinese"`（CDN：`@vp-tw/cjk-web-fonts-fusion-pixel-font`，简体中文字子集 78 个 woff2 按 unicode-range 按需下载）；fallback `"FB-Pixel"`（`@font-face` 度量对齐：ascent 108% / descent 25%，把回退字体的行框对齐到 webfont，字体 swap 时 CLS≈0，见 styles.css I2 注释）→ `sans-serif`。
 - **设计哲学**：像素字体不做字重变化（仅 400）、不做 letter-spacing 追踪（eyebrow 除外，1px）；层级完全靠字号与描边/阴影表达；正文用 12/14px（12 为字体原生网格，移动端 DPR≥2 下物理像素充足）。
 
 | 层级 | Size | Weight | Line Height | Letter Spacing | 用途 |
 |------|------|--------|-------------|----------------|------|
-| Hero | 24px | 400 | 1.3 | 0 | 首页主标题 |
-| Screen Title | 20px | 400 | 1.3 | 0 | L2/L3 屏标题 |
-| Button/Dish Name | 16px | 400 | 1.0 | 0 | 按钮、菜名 |
-| Body | 14px | 400 | 1.5 | 0 | 正文、清单项 |
-| Nano | 12px | 400 | 1.4 | 0 | 标签、徽章、提示、勾选计数 |
-| Eyebrow | 12px | 400 | 1.5 | 1px | FARM QUEST 小标 |
+| Hero | 24px | 400 | 1 | 0 | 首页主标题、通关标题 |
+| Title | 24px | 400 | 1 | 0 | 屏标题（12px 栅格 2 倍档） |
+| Body/Button | 12px | 400 | 1 | 0 | 按钮、菜名、正文、标签、徽章 |
+| Input | 16px | 400 | 1 | 0 | 表单控件例外：防 iOS 聚焦自动放大 |
+
+> H3 整改后字号收敛为 **12 / 24 两档**（12px 是 Fusion Pixel 的原生网格，24px = 2 倍整数倍缩放不发虚）；并提供 `data-fs="lg"` 大字号档（12→16 / 24→32），localStorage `gp_fs` 记忆。
 
 ## 4. Component Stylings
 
@@ -157,10 +193,11 @@
 | 层级 | 值 | 用途 |
 |------|-----|------|
 | shadow-0 | `0 0 0 var(--c-ink)` | 按钮/行 active 按压态 |
-| shadow-sm | `2px 2px 0 var(--c-ink)` | 小按钮、清单行、勾选框 |
-| shadow-md | `3px 3px 0 var(--c-ink)` | 顶栏、图标按钮、徽章、输入框 |
-| shadow-lg | `4px 4px 0 var(--c-ink)` | 菜品卡、悬浮去采购 |
+| shadow-xs | `2px 2px 0 var(--c-ink)` | 小按钮、清单行、勾选框、chip |
+| shadow-card | `4px 4px 0 var(--c-ink)` | 菜品卡、悬浮去采购、大面板 |
 | notch | 四向 4px 实色 + drop-shadow(5px 5px 0 22% 墨) | 缺角大面板 |
+
+> H6 整改后阴影只留 **2px / 4px 两档**（全部落在 4px 栅格上），原 3px 档取消。
 
 - **Surface Layers**：field（田地，桌面包围）→ cream（App 底）→ paper（卡片/输入）→ cream-d（图标砖/标签底）→ overlay（分享遮罩 55% 墨）。
 - **Z-index**：topbar 50 → float-checkout 60 → share-modal 100。
@@ -184,7 +221,7 @@
 4. 禁止大面积高饱和平铺（番茄红只做 CTA 与关键状态，不做大背景）。
 5. 禁止在 canvas 清单图里混用圆角矩形/弧线（roundRect、arc 全部改为矩形 + 像素勾选）。
 6. 不要给像素图标设置非整数缩放（12 的倍数：12/13/15/18/20/22/26/28/40/52 已验证清晰）。
-7. 不要新增外部依赖（字体 CDN + Supabase SDK 之外零依赖）。
+7. 不要新增外部依赖（当前唯一外部请求是字体 CDN；离线版连它也内联了，file:// 零请求）。
 
 ## 8. Responsive Behavior
 

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>像素农场 · 采购记 — 1024 造物挑战参赛作品</title>
+<meta name="description" content="把「今天吃什么 → 去超市买什么」包装成一场 16-bit 农场冒险的采购小助手。104 道菜、8 大超市分区、125 个手绘像素图标，零依赖纯静态网页。" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vp-tw/cjk-web-fonts-fusion-pixel-font@0.0.1/dist/12px/proportional/zh_hans/Fusion-Pixel-12px-Proportional-Simplified-Chinese.css" />
+<style>
+  :root{
+    --c-ink:#3B2A20; --c-ink-soft:#7A6255;
+    --c-wood-d:#5C3D2E; --c-wood:#A9724A; --c-wood-l:#C89B6A;
+    --c-cream:#FFF1D6; --c-paper:#FFF8EA; --c-cream-d:#EBD9B4;
+    --c-field:#A8CF8B;
+    --c-tomato:#E0533F; --c-tomato-d:#B83A2B;
+    --c-corn:#F2C14E; --c-corn-d:#D69E2D; --c-corn-l:#FBEED3;
+    --c-sky:#6BB8DE;
+    --c-cart-bg:#E9F5DB;
+    --font-px:"Fusion Pixel 12px Proportional Simplified Chinese","Microsoft YaHei","PingFang SC",sans-serif;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--font-px); font-size:12px; line-height:1.6;
+    background:var(--c-field); color:var(--c-ink);
+    background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);
+    background-size:16px 16px;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:24px 16px 64px}
+
+  /* ---------- 顶栏 ---------- */
+  .topbar{
+    background:linear-gradient(var(--c-wood-l),var(--c-wood));
+    border-bottom:3px solid var(--c-ink);
+    padding:10px 16px; display:flex; align-items:center; gap:10px;
+    position:sticky; top:0; z-index:50;
+  }
+  .topbar .brand{font-size:16px;color:var(--c-paper);text-shadow:2px 2px 0 var(--c-ink)}
+  .topbar .tag{font-size:12px;color:var(--c-paper);opacity:.92;margin-left:auto}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:var(--c-cream); border:3px solid var(--c-ink); box-shadow:4px 4px 0 var(--c-ink);
+    padding:28px 20px 24px; text-align:center; margin:24px 0 20px;
+  }
+  .hero .eyebrow{font-size:12px;letter-spacing:1px;color:var(--c-wood-d);margin-bottom:10px}
+  .hero h1{font-size:24px;line-height:1.25;margin:0 0 12px;text-shadow:2px 2px 0 var(--c-corn)}
+  .hero p{max-width:640px;margin:0 auto 18px;font-size:12px;color:var(--c-ink-soft)}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 18px;
+    font-family:var(--font-px);font-size:12px;text-decoration:none;cursor:pointer;
+    border:3px solid var(--c-ink);box-shadow:4px 4px 0 var(--c-ink);
+    background:var(--c-paper);color:var(--c-ink);
+  }
+  .btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--c-ink)}
+  .btn.primary{background:var(--c-tomato);color:var(--c-paper)}
+  .btn.corn{background:var(--c-corn);}
+  .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .chip{background:var(--c-paper);border:2px solid var(--c-ink);box-shadow:2px 2px 0 var(--c-ink);padding:4px 10px;font-size:12px}
+  .chip b{color:var(--c-tomato-d)}
+
+  /* ---------- 截图墙 ---------- */
+  h2.sec{
+    font-size:16px;margin:34px 0 14px;display:flex;align-items:center;gap:8px;
+  }
+  h2.sec::before{content:"";width:12px;height:12px;background:var(--c-tomato);border:2px solid var(--c-ink);box-shadow:2px 2px 0 var(--c-ink)}
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .shot{background:var(--c-paper);border:3px solid var(--c-ink);box-shadow:4px 4px 0 var(--c-ink);padding:8px}
+  .shot img{width:100%;display:block;border:2px solid var(--c-ink)}
+  .shot .cap{font-size:12px;color:var(--c-ink-soft);margin-top:6px;text-align:center}
+
+  /* ---------- 亮点卡 ---------- */
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .feat{background:var(--c-paper);border:3px solid var(--c-ink);box-shadow:4px 4px 0 var(--c-ink);padding:16px}
+  .feat h3{font-size:12px;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+  .feat h3 .sq{width:16px;height:16px;border:2px solid var(--c-ink);flex:none}
+  .feat p{margin:0;font-size:12px;color:var(--c-ink-soft)}
+  .feat ul{margin:8px 0 0;padding-left:16px;font-size:12px;color:var(--c-ink-soft)}
+
+  /* ---------- 技术条 ---------- */
+  .tech{background:var(--c-cream);border:3px solid var(--c-ink);box-shadow:4px 4px 0 var(--c-ink);padding:16px;margin-top:14px}
+  .tech table{width:100%;border-collapse:collapse;font-size:12px}
+  .tech td,.tech th{border:2px solid var(--c-ink);padding:6px 8px;text-align:left}
+  .tech th{background:var(--c-corn-l);width:32%}
+  .tech tr td:first-child{background:var(--c-cream-d)}
+
+  footer{margin-top:36px;text-align:center;font-size:12px;color:var(--c-wood-d)}
+  footer .foot{margin-top:8px;color:var(--c-ink-soft)}
+  @media (max-width:560px){ .hero h1{font-size:20px} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <span class="brand">🏠 像素农场 · 采购记</span>
+  <span class="tag">1024 造物挑战 · 参赛作品</span>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ Hero ============ -->
+  <section class="hero">
+    <div class="eyebrow">FARM QUEST · 今日任务</div>
+    <h1>今天想吃点啥？<br />去超市该买什么，一道菜一道菜地接任务</h1>
+    <p>
+      一个 16-bit 农场游戏风的超市采购助手：选几道想吃的菜，它按 8 大超市分区列好采购清单，
+      逐区闯关打勾，通关后导出像素风清单图分享给同伴。104 道家常菜、122 种食材、
+      125 个手绘像素图标，全部跑在一个零依赖的静态网页里。
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="index.html">▶ 打开应用</a>
+      <a class="btn corn" href="grocery-reminder-offline.html" download>⬇ 下载离线单文件版</a>
+      <a class="btn" href="https://pixel-farm-groceries.app.workbuddy.host/" target="_blank" rel="noopener">↗ 在线演示</a>
+    </div>
+    <div class="chips">
+      <span class="chip"><b>104</b> 道菜谱</span>
+      <span class="chip"><b>8</b> 大超市分区</span>
+      <span class="chip"><b>122</b> 种食材图标</span>
+      <span class="chip"><b>125</b> 个手绘像素图标</span>
+      <span class="chip"><b>0</b> 运行时依赖</span>
+    </div>
+  </section>
+
+  <!-- ============ 界面实录 ============ -->
+  <h2 class="sec">界面实录</h2>
+  <div class="shots">
+    <figure class="shot"><img src="docs/shots/m-home.png" alt="首页任务板" loading="lazy" /><figcaption class="cap">L1 首页 · 任务板</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/m-select.png" alt="挑菜列表" loading="lazy" /><figcaption class="cap">L2 挑菜 · 搜索结果</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/m-select-cart.png" alt="已入篮的卡片" loading="lazy" /><figcaption class="cap">L2 挑菜 · 已入篮</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/m-guide.png" alt="分区导览闯关" loading="lazy" /><figcaption class="cap">L3 分区闯关</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/m-overview.png" alt="全部清单总览" loading="lazy" /><figcaption class="cap">L3b 全部清单</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/m-share.png" alt="像素清单图分享弹层" loading="lazy" /><figcaption class="cap">清单图 · 分享弹层</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/d-home.png" alt="桌面端掌机布局" loading="lazy" /><figcaption class="cap">桌面 · 掌机布局</figcaption></figure>
+    <figure class="shot"><img src="docs/shots/d-overview.png" alt="桌面端总览" loading="lazy" /><figcaption class="cap">桌面 · 全部清单</figcaption></figure>
+  </div>
+
+  <!-- ============ 亮点 ============ -->
+  <h2 class="sec">为什么是它</h2>
+  <div class="feats">
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-tomato)"></span>把采购变成一场农场冒险</h3>
+      <p>搜索/掷骰子选菜 = 接任务；按超市分区逐区打勾 = 闯关；导出清单图 = 通关晒图。菜篮、关卡、战绩全是游戏化语言。</p>
+    </div>
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-corn)"></span>125 个手绘像素图标</h3>
+      <p>自研 ASCII 图标引擎：12×12 字符网格 → 运行时合并生成 crispEdges SVG。每种食材有专属小图标，成品菜预览保持纯文字，职责分明。</p>
+    </div>
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-sky)"></span>贴着真实超市动线设计</h3>
+      <p>清单按 8 大分区（蔬菜/肉禽/水产/调料干货/冷冻/粮油/蛋奶/其他）聚合，同名食材合并、同义写法归一（土豆片=土豆），备注去重合并，一路少走回头路。</p>
+    </div>
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-grass,#5A8A3C)"></span>零依赖，离线也能用</h3>
+      <p>没有框架、没有后端、没有构建步骤。Service Worker 缓存 + 单文件离线版（字体子集内联，file:// 双击即用，网络请求为 0）。</p>
+    </div>
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-wood)"></span>无障碍与稳健性</h3>
+      <p>全键盘可操作（button + role=checkbox + 焦点陷阱）、对比度 ≥4.5:1、脏 localStorage 防御、多标签菜篮同步、canvas 导出三重降级。</p>
+    </div>
+    <div class="feat">
+      <h3><span class="sq" style="background:var(--c-tomato-d)"></span>像素清单图一键分享</h3>
+      <p>通关后 canvas 实时生成像素风清单图（分区色条 + 像素勾选框），可保存到手机、分享到微信，也可复制文字清单或带菜篮的分享链接。</p>
+    </div>
+  </div>
+
+  <!-- ============ 技术 ============ -->
+  <h2 class="sec">技术一览</h2>
+  <div class="tech">
+    <table>
+      <tr><th>形态</th><td>纯静态站点：HTML + CSS + vanilla JS（一个 IIFE，约 9.9k 行），无框架 / 无后端 / 无构建</td></tr>
+      <tr><th>图标引擎</th><td>12×12 ASCII 网格 → 横向合并 rect → crispEdges SVG；Node 可 ASCII 预览 + 行宽校验</td></tr>
+      <tr><th>数据</th><td>104 道菜 / 8 分区 / 122 种食材 / 739 条关联；启动时 type·cuisine 推导 + 复合调料名拆解 + 同义归一</td></tr>
+      <tr><th>状态</th><td>localStorage（脏值防御 + 写失败降级）+ storage 事件多标签同步 + 深链 #m=id,id 还原菜篮</td></tr>
+      <tr><th>离线</th><td>Service Worker（cache-first）+ 单文件构建器（按字符集精选 26/78 个字体子集内联，1.0MB）</td></tr>
+      <tr><th>测试</th><td>3 套 Playwright 行为回归（24+20+15 项，均断言 0 pageerror / 0 console error）+ 4 个 Node 校验脚本</td></tr>
+    </table>
+  </div>
+
+  <footer>
+    <div>像素农场 · 采购记 ｜ 16-bit 农场复古风采购助手</div>
+    <div class="foot">
+      设计文档 <a href="DESIGN-pixel.md">DESIGN-pixel.md</a> ·
+      技术深挖 <a href="ENGINEERING.md">ENGINEERING.md</a> ·
+      项目说明 <a href="README.md">README.md</a> ·
+      离线版 <a href="grocery-reminder-offline.html" download>grocery-reminder-offline.html</a>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>

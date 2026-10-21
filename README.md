@@ -4,6 +4,7 @@
 > 一个 16-bit 农场游戏外壳里的「今晚吃什么」决策工具。
 
 **在线演示**：<https://pixel-farm-groceries.app.workbuddy.host/?sharecode=7TXN4ZUHNR>
+**离线单文件版**：双击 `grocery-reminder-offline.html` 即可运行（无需服务器、无需网络）
 
 ---
 
@@ -68,29 +69,43 @@ python -m http.server 8901
 grocery-reminder-pixel/
 ├── index.html              # 单页应用外壳（五屏：home/select/guide/overview/shareModal）
 ├── styles.css              # 16-bit 农场设计系统（硬描边 / 偏移硬阴影 / 缺角面板 / 木纹顶栏）
-├── app.js                  # 全部交互逻辑（约 700 行，原生 JS，无框架）
+├── app.js                  # 全部交互逻辑（约 1200 行，原生 JS，无框架）
 ├── icons.js                # 自研像素图标引擎 + 33 个界面图标
 ├── ingredient-icons.js     # 92 个食材像素图标 + 122 种食材映射表
 ├── data-100.js             # 104 道菜 / 122 种食材 / 8 个分区（主数据集）
 ├── data.js                 # 22 道菜的回退数据集
 ├── analytics.js            # 本地环形队列埋点（gp_events / gp_history）
+├── sw.js                   # Service Worker（cache-first 本地资源 / 离线可用）
+├── manifest.webmanifest    # PWA 清单（可添加到主屏）
+├── grocery-reminder-offline.html  # 单文件离线版（file:// 双击即用，零网络请求，1.0MB）
+├── showcase.html           # 参赛作品说明页（配图 + 亮点 + 技术一览）
 ├── assets/
 │   ├── ing_icon_sheet.html/.png   # 92 个食材图标总拼图（目检用）
 │   ├── validate_ing_icons.js      # 图标三重校验（行宽/覆盖/失效 key）
-│   ├── qa_final.py                # Playwright 回归 QA（界面断言 + 截图）
+│   ├── test_synonym.js            # 同义合并 12 项断言（含勾选键一致性）
+│   ├── build_offline.js           # 单文件离线版构建器（按字符集精选字体子集）
 │   ├── qa_regress.py              # 24 项行为回归（稳定性/视觉/数据）
-│   └── patch_data.js              # 数据修补脚本（自选菜 optional / type 修正）
+│   ├── qa_regress_e.py            # 20 项回归（无障碍/空态/深链/弹层/SW）
+│   ├── qa_multitab.py             # 15 项多标签购物篮同步回归
+│   ├── qa_cls.py / measure_font_metrics.py  # 字体 CLS 度量实测
+│   ├── shots_docs.py              # 文档配图截图采集
+│   └── patch_data*.js             # 数据修补脚本（自选菜 optional / type / 同义归一）
+├── docs/shots/             # 文档配图（DESIGN-pixel.md 与 showcase.html 引用）
 ├── review-panel/           # 10 人评审团报告 + 合并整改总表
-└── DESIGN-pixel.md          # 设计文档（组件规范 / 图标系统 / 调色板）
+├── DESIGN-pixel.md          # 设计文档（组件规范 / 图标系统 / 配图实录）
+├── ENGINEERING.md           # 技术深挖（架构 / 图标引擎 / 状态层 / 离线策略）
+├── showcase.html            # 参赛说明页
+└── LICENSE                  # MIT
 ```
 
 ## 性能与体积
 
 | 项 | 数值 |
 |---|---|
-| 本地资源合计 | **236 KB**（未压缩，无框架无依赖） |
+| 本地资源合计 | **274 KB**（未压缩，无框架无依赖；首屏关键路径更小） |
+| 单文件离线版 | **1.0 MB**（含 26 个精选字体子集 base64，`file://` 零请求） |
 | 已移除的浪费 | supabase-js CDN **218 KB**（原占传输量 42%，从未被调用） |
-| 字体 | 中文像素字体按 `unicode-range` 分子集懒加载；CSS 已改非阻塞 |
+| 字体 | 中文像素字体按 `unicode-range` 分子集懒加载；CSS 已改非阻塞；回退字体度量对齐消 CLS |
 | 首屏 | 无渲染阻塞的外链脚本；`file://` 可直接运行 |
 
 ## 兼容性

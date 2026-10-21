@@ -1,0 +1,22 @@
+{
+  "name": "像素农场 · 采购记",
+  "short_name": "像素农场采购记",
+  "description": "选几道想吃的菜，自动按超市 8 大分区生成采购清单，可导出像素风清单图。",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF1D6",
+  "theme_color": "#A9724A",
+  "categories": ["food", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

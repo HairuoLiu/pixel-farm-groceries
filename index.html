@@ -7,6 +7,9 @@
   <title>像素农场 · 采购记</title>
   <meta name="description" content="选几道想吃的菜，自动生成按超市分区整理好的采购清单，可导出像素风清单图。" />
   <meta name="theme-color" content="#A9724A" />
+  <!-- G13：PWA 元数据（可加主屏、独立窗口、主题色、离线可用） -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
   <!-- 中文像素字体（缝合像素字体 · 简体中子集，按 unicode-range 按需加载）
        D2：70.9KB 的字体 CSS 原本是渲染阻塞资源。改为 preconnect + preload + 非阻塞加载，
        首屏不再等它；字体文件本身仍按 unicode-range 懒加载。 -->
@@ -26,9 +29,11 @@
         <span class="brand-ico" id="brandIco"></span>
         <span class="brand-name">像素农场 · 采购记</span>
       </div>
+      <!-- H3：字号档位（标准 / 大字） -->
+      <button id="fsToggle" class="fs-toggle" type="button" aria-label="切换字号大小">A</button>
       <button id="cartPill" class="cart-pill" aria-label="查看菜篮" hidden>
         <span class="cart-ico" id="cartIco"></span>
-        <span id="cartCount" class="cart-num">0</span>
+        <span id="cartCount" class="cart-num" aria-live="polite">0</span>
       </button>
     </header>
 
@@ -37,7 +42,37 @@
       <section id="home" class="screen">
         <p class="eyebrow">FARM QUEST · 今日任务</p>
         <h1 class="hero">今天想吃点啥？</h1>
-        <p class="hero-sub">搜菜名，或者让农场帮你摇几道～</p>
+        <!-- G1：把「这是个什么东西」讲清楚，并用数据 chip 建立可信度 -->
+        <p class="hero-sub">选好几道菜，农场帮你按超市 <b>8 大分区</b>列好采购清单</p>
+
+        <div class="data-chips" id="dataChips">
+          <span class="chip"><b>104</b> 道菜谱</span>
+          <span class="chip"><b>122</b> 种食材</span>
+          <span class="chip"><b>125</b> 个手绘像素图标</span>
+        </div>
+
+        <!-- G2：像素农场场景带（复用图标引擎，纯 DOM + CSS 动画） -->
+        <div class="farm-band" id="farmBand" aria-hidden="true"></div>
+
+        <!-- G1：三步引导，可关闭且记住选择 -->
+        <div id="steps" class="steps" hidden>
+          <button id="stepsClose" class="steps-x" type="button" aria-label="关闭引导">×</button>
+          <div class="step"><span class="step-n">1</span><span class="step-t">搜菜 / 摇菜，挑几道想吃的</span></div>
+          <div class="step"><span class="step-n">2</span><span class="step-t">按超市分区逐区打勾采购</span></div>
+          <div class="step"><span class="step-n">3</span><span class="step-t">导出像素清单图，分享给同伴</span></div>
+        </div>
+
+        <!-- G4：本周采购战绩（有数据才显示） -->
+        <div id="statsPanel" class="stats-panel" hidden>
+          <div class="sp-head"><span class="btn-ico" id="statIco"></span>本周采购战绩</div>
+          <div class="sp-grid">
+            <div class="sp-cell"><b id="spLists">0</b><span>份清单</span></div>
+            <div class="sp-cell"><b id="spItems">0</b><span>样食材</span></div>
+            <div class="sp-cell"><b id="spDays">0</b><span>天有记录</span></div>
+            <div class="sp-cell"><b id="spChecks">0</b><span>次打勾</span></div>
+          </div>
+          <div class="sp-fav" id="spFav" hidden>常点：<b></b></div>
+        </div>
 
         <form id="searchForm" class="search-wrap" autocomplete="off">
           <span class="search-ico" id="searchIco"></span>
@@ -45,8 +80,14 @@
           <button type="submit" class="search-go">搜一搜</button>
         </form>
 
-        <div id="noMatch" class="no-match" hidden>
+        <div id="noMatch" class="no-match" role="status" aria-live="polite" hidden>
           <p>没找到「<span id="noMatchQ"></span>」这道菜。换换关键词，或者随便来四个？</p>
+          <div class="no-match-actions">
+            <button id="nmRandom" class="rbtn primary" type="button">
+              <span class="btn-ico" id="nmDiceIco"></span>随便来四个
+            </button>
+            <button id="nmClear" class="rbtn ghost" type="button">清空重搜</button>
+          </div>
         </div>
 
         <p class="section-label">— 去田里看看 · 按菜类 —</p>
@@ -56,9 +97,9 @@
           <span class="btn-ico" id="diceIco"></span>掷骰子 · 随便来四个
         </button>
 
-        <button id="cuisineToggle" class="rbtn ghost rbtn-block cuisine-toggle">
+        <button id="cuisineToggle" class="rbtn ghost rbtn-block cuisine-toggle" aria-expanded="false" aria-controls="cuisineWrap">
           <span><span class="btn-ico" id="globeIco"></span>尝尝别的口味 · 按菜系</span>
-          <span class="chev">▼</span>
+          <span class="chev" aria-hidden="true">▼</span>
         </button>
         <div id="cuisineWrap" class="cuisine-wrap" hidden>
           <div id="cuisineGrid" class="rgrid"></div>
@@ -108,6 +149,12 @@
         <button id="ovImg" class="rbtn primary rbtn-block">
           <span class="btn-ico" id="shareIco"></span>生成清单图（可分享 / 截图）
         </button>
+        <button id="ovCopy" class="rbtn ghost rbtn-block">
+          <span class="btn-ico" id="copyIco"></span>复制文字清单
+        </button>
+        <button id="ovLink" class="rbtn ghost rbtn-block">
+          <span class="btn-ico" id="linkIco"></span>复制分享链接
+        </button>
         <div class="guide-foot">
           <button id="ovBack" class="rbtn ghost"><span class="btn-ico" id="ovBackIco"></span>返回导览</button>
           <button id="ovDone" class="rbtn primary"><span class="btn-ico" id="flagIco"></span>完成采购</button>
@@ -128,13 +175,20 @@
     <!-- 分享清单图弹层（导出 PNG，可保存/分享到任意渠道） -->
     <div id="shareModal" class="share-modal" hidden>
       <div class="share-backdrop" id="shareBackdrop"></div>
-      <div class="share-sheet">
-        <div class="share-head"><span class="btn-ico" id="shareHeadIco"></span>采购清单图</div>
+      <div class="share-sheet" role="dialog" aria-modal="true" aria-labelledby="shareHeadTitle">
+        <div class="share-head">
+          <span class="btn-ico" id="shareHeadIco"></span>
+          <span id="shareHeadTitle">采购清单图</span>
+          <button id="shareCloseX" class="share-x" type="button" aria-label="关闭">×</button>
+        </div>
         <img id="shareImg" class="share-img" alt="采购清单图" />
         <div class="share-actions">
           <button id="shareSave" class="rbtn primary rbtn-block">保存图片</button>
           <button id="shareNative" class="rbtn ghost rbtn-block">分享到手机</button>
+          <button id="shareCopy" class="rbtn ghost rbtn-block">复制文字清单</button>
+          <button id="shareLink" class="rbtn ghost rbtn-block">复制分享链接</button>
           <button id="shareClose" class="rbtn ghost rbtn-block">关闭</button>
+          <p id="wechatHint" class="wechat-hint" hidden>在微信里点「…」→ 用浏览器打开，即可保存图片</p>
         </div>
       </div>
     </div>

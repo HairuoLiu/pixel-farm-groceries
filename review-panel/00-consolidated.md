@@ -92,10 +92,10 @@
 
 | 波次 | 内容 | 状态 |
 |---|---|---|
-| Wave A | P0 稳定性 A1-A8（app.js 修正） | ⏳ |
-| Wave B | P0 视觉 B1-B3（egg/字号/scale） | ⏳ |
-| Wave C | P0 数据 C1-C2（data-100.js） | ⏳ |
-| Wave D | P0 发布 D1-D2 + F1-F2（去 supabase/字体/README/部署） | ⏳ |
-| Wave E | P0-P1 体验 E1-E2 + G1-G17 | ⏳ |
-| Wave F | P2 打磨 H1-H12 | ⏳ |
-| Wave G | P3 I1-I4 | ⏳ |
+| Wave A | P0 稳定性 A1-A8（app.js 修正） | ✅ 24 项回归全过 |
+| Wave B | P0 视觉 B1-B3（egg/字号/scale） | ✅ Node ASCII 预览确认 |
+| Wave C | P0 数据 C1-C2（data-100.js） | ✅ dry-run 核对 39+4 项 |
+| Wave D | P0 发布 D1-D2 + F1-F2（去 supabase/字体/README/部署） | ✅ 已部署 + 线上冒烟 0 错误 |
+| Wave E | P0-P1 体验 E1-E2 + G1-G17 | ✅ 20 项回归全过 |
+| Wave F | P2 打磨 H1-H12 | ✅ H1-H10 两套回归全过；H11 差异化/归区 + ING_SYNONYM 同义合并（test_synonym 12 项）；H12a 删 73 条冗余 tag |
+| Wave G | P3 I1-I4 | ✅ I1 多标签同步（15 项回归）；I2 字体度量对齐（实测 + 回退冒烟）；I3 单文件离线版 1.0MB file:// 零请求（19 项回归）；I4 DESIGN 配图 + ENGINEERING.md + showcase.html + LICENSE + README 同步 |

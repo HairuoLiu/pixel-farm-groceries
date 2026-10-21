@@ -480,7 +480,6 @@ window.DISHES_100 = {
       "name": "酸辣土豆丝",
       "desc": "开胃爽脆的人气素菜",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -534,8 +533,7 @@ window.DISHES_100 = {
       "name": "土豆炖牛肉",
       "desc": "软烂入味的暖身炖菜",
       "tags": [
-        "炖菜",
-        "肉菜"
+        "炖菜"
       ],
       "items": [
         {
@@ -592,7 +590,6 @@ window.DISHES_100 = {
       "name": "土豆烧鸡",
       "desc": "鸡香与土豆交融的下饭菜",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -651,7 +648,6 @@ window.DISHES_100 = {
       "name": "地三鲜",
       "desc": "土豆茄子青椒的东北经典",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -709,7 +705,6 @@ window.DISHES_100 = {
       "name": "咖喱土豆",
       "desc": "浓郁咖喱味的素菜",
       "tags": [
-        "素菜",
         "咖喱"
       ],
       "items": [
@@ -778,7 +773,6 @@ window.DISHES_100 = {
       "name": "土豆丝炒青椒",
       "desc": "双素清脆的下饭小炒",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -825,7 +819,6 @@ window.DISHES_100 = {
       "name": "土豆焖饭",
       "desc": "一锅搞定的主食菜",
       "tags": [
-        "主食",
         "一锅出"
       ],
       "items": [
@@ -865,19 +858,16 @@ window.DISHES_100 = {
       "name": "青椒炒肉",
       "desc": "家常下饭的肉片小炒",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
         {
           "zone": "vegetable",
-          "name": "青椒",
-          "optional": false
+          "name": "青椒"
         },
         {
           "zone": "meat",
-          "name": "猪肉",
-          "optional": false
+          "name": "五花肉"
         },
         {
           "zone": "seasoning",
@@ -918,7 +908,6 @@ window.DISHES_100 = {
       "name": "虎皮青椒",
       "desc": "焦香微辣的纯素下饭菜",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -972,7 +961,6 @@ window.DISHES_100 = {
       "name": "回锅肉",
       "desc": "川味咸香肥而不腻",
       "tags": [
-        "肉菜",
         "川菜"
       ],
       "items": [
@@ -1030,7 +1018,6 @@ window.DISHES_100 = {
       "name": "红烧肉",
       "desc": "酱红软糯的硬菜",
       "tags": [
-        "肉菜",
         "硬菜"
       ],
       "items": [
@@ -1090,7 +1077,6 @@ window.DISHES_100 = {
       "name": "糖醋里脊",
       "desc": "酸甜酥脆的人气菜",
       "tags": [
-        "肉菜",
         "酸甜"
       ],
       "items": [
@@ -1150,7 +1136,6 @@ window.DISHES_100 = {
       "name": "鱼香肉丝",
       "desc": "咸甜酸辣的经典川菜",
       "tags": [
-        "肉菜",
         "川菜"
       ],
       "items": [
@@ -1225,23 +1210,20 @@ window.DISHES_100 = {
       "name": "青椒肉丝",
       "desc": "嫩滑肉丝配清脆青椒",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
         {
           "zone": "vegetable",
-          "name": "青椒",
-          "optional": false
+          "name": "青椒"
         },
         {
           "zone": "meat",
-          "name": "猪肉",
-          "optional": false
+          "name": "里脊肉"
         },
         {
           "zone": "seasoning",
-          "name": "蒜",
+          "name": "姜",
           "optional": true,
           "note": "底料配料"
         },
@@ -1278,7 +1260,6 @@ window.DISHES_100 = {
       "name": "蒜薹炒肉",
       "desc": "脆嫩蒜香的家常小炒",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -1325,7 +1306,6 @@ window.DISHES_100 = {
       "name": "红烧排骨",
       "desc": "酱香软烂的硬菜",
       "tags": [
-        "肉菜",
         "硬菜"
       ],
       "items": [
@@ -1385,7 +1365,6 @@ window.DISHES_100 = {
       "name": "糖醋排骨",
       "desc": "酸甜入骨的受欢迎硬菜",
       "tags": [
-        "肉菜",
         "酸甜"
       ],
       "items": [
@@ -1439,7 +1418,6 @@ window.DISHES_100 = {
       "name": "梅菜扣肉",
       "desc": "咸香软糯的传统蒸菜",
       "tags": [
-        "肉菜",
         "蒸菜"
       ],
       "items": [
@@ -1499,7 +1477,6 @@ window.DISHES_100 = {
       "name": "京酱肉丝",
       "desc": "酱香浓郁的北方名菜",
       "tags": [
-        "肉菜",
         "北方"
       ],
       "items": [
@@ -1553,7 +1530,6 @@ window.DISHES_100 = {
       "name": "木须肉",
       "desc": "肉蛋木耳的均衡小炒",
       "tags": [
-        "肉菜",
         "均衡"
       ],
       "items": [
@@ -1610,7 +1586,6 @@ window.DISHES_100 = {
       "name": "肉末茄子",
       "desc": "软糯入味的下饭神器",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -1669,7 +1644,6 @@ window.DISHES_100 = {
       "name": "蚂蚁上树",
       "desc": "粉丝吸饱肉香的川菜",
       "tags": [
-        "肉菜",
         "川菜"
       ],
       "items": [
@@ -1722,7 +1696,6 @@ window.DISHES_100 = {
       "name": "红烧狮子头",
       "desc": "大肉丸子的满足硬菜",
       "tags": [
-        "肉菜",
         "硬菜"
       ],
       "items": [
@@ -1793,7 +1766,6 @@ window.DISHES_100 = {
       "name": "粉蒸肉",
       "desc": "米粉裹肉的软糯蒸菜",
       "tags": [
-        "肉菜",
         "蒸菜"
       ],
       "items": [
@@ -1845,7 +1817,6 @@ window.DISHES_100 = {
       "name": "可乐鸡翅",
       "desc": "甜咸入味的零难度菜",
       "tags": [
-        "肉菜",
         "快手"
       ],
       "items": [
@@ -1892,7 +1863,6 @@ window.DISHES_100 = {
       "name": "红烧鸡块",
       "desc": "酱香浓郁的鸡肉家常菜",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -1958,7 +1928,6 @@ window.DISHES_100 = {
       "name": "宫保鸡丁",
       "desc": "糊辣荔枝口的经典川菜",
       "tags": [
-        "肉菜",
         "川菜"
       ],
       "items": [
@@ -2029,7 +1998,6 @@ window.DISHES_100 = {
       "name": "香菇炖鸡",
       "desc": "鲜香滋补的暖身汤菜",
       "tags": [
-        "肉菜",
         "炖菜"
       ],
       "items": [
@@ -2082,7 +2050,6 @@ window.DISHES_100 = {
       "name": "黄焖鸡",
       "desc": "酱香浓郁的国民快餐菜",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -2146,7 +2113,6 @@ window.DISHES_100 = {
       "name": "辣子鸡",
       "desc": "麻辣酥香的川味硬菜",
       "tags": [
-        "肉菜",
         "川菜",
         "辣"
       ],
@@ -2213,7 +2179,6 @@ window.DISHES_100 = {
       "name": "小鸡炖蘑菇",
       "desc": "东北家常的鲜浓炖菜",
       "tags": [
-        "肉菜",
         "炖菜"
       ],
       "items": [
@@ -2265,7 +2230,6 @@ window.DISHES_100 = {
       "name": "咖喱鸡",
       "desc": "浓郁咖喱的异域家常菜",
       "tags": [
-        "肉菜",
         "咖喱"
       ],
       "items": [
@@ -2309,7 +2273,6 @@ window.DISHES_100 = {
       "name": "番茄牛腩",
       "desc": "酸甜软烂的炖菜",
       "tags": [
-        "肉菜",
         "炖菜"
       ],
       "items": [
@@ -2367,7 +2330,6 @@ window.DISHES_100 = {
       "name": "青椒牛肉",
       "desc": "嫩滑牛肉配清脆青椒",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -2425,7 +2387,6 @@ window.DISHES_100 = {
       "name": "黑椒牛柳",
       "desc": "西式风味的嫩牛柳",
       "tags": [
-        "肉菜",
         "西式"
       ],
       "items": [
@@ -2483,7 +2444,6 @@ window.DISHES_100 = {
       "name": "牛肉炒洋葱",
       "desc": "咸香下饭的快手肉菜",
       "tags": [
-        "肉菜",
         "下饭"
       ],
       "items": [
@@ -2536,7 +2496,6 @@ window.DISHES_100 = {
       "name": "红烧牛肉",
       "desc": "酱香浓郁的炖牛肉",
       "tags": [
-        "肉菜",
         "炖菜"
       ],
       "items": [
@@ -2602,7 +2561,6 @@ window.DISHES_100 = {
       "name": "葱爆牛肉",
       "desc": "葱香浓郁的快手牛柳",
       "tags": [
-        "肉菜",
         "快手"
       ],
       "items": [
@@ -2612,7 +2570,7 @@ window.DISHES_100 = {
           "optional": false
         },
         {
-          "zone": "vegetable",
+          "zone": "seasoning",
           "name": "大葱",
           "optional": false
         },
@@ -2655,7 +2613,6 @@ window.DISHES_100 = {
       "name": "水煮牛肉",
       "desc": "麻辣鲜香的经典川菜",
       "tags": [
-        "肉菜",
         "川菜",
         "辣"
       ],
@@ -3136,7 +3093,7 @@ window.DISHES_100 = {
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -3179,7 +3136,7 @@ window.DISHES_100 = {
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -3239,12 +3196,11 @@ window.DISHES_100 = {
       "name": "家常豆腐",
       "desc": "酱香微辣的豆腐小炒",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -3297,12 +3253,11 @@ window.DISHES_100 = {
       "name": "红烧豆腐",
       "desc": "酱汁浓郁的简单豆腐",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -3351,18 +3306,17 @@ window.DISHES_100 = {
       "name": "皮蛋拌豆腐",
       "desc": "凉拌零厨艺的快手菜",
       "tags": [
-        "素菜",
         "凉拌",
         "快手"
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "dairy",
           "name": "皮蛋",
           "optional": false
         },
@@ -3405,7 +3359,6 @@ window.DISHES_100 = {
       "name": "凉拌黄瓜",
       "desc": "爽口开胃的零难度凉菜",
       "tags": [
-        "素菜",
         "凉拌",
         "快手"
       ],
@@ -3460,7 +3413,6 @@ window.DISHES_100 = {
       "name": "拍黄瓜",
       "desc": "蒜香十足的下饭凉菜",
       "tags": [
-        "素菜",
         "凉拌",
         "快手"
       ],
@@ -3509,7 +3461,6 @@ window.DISHES_100 = {
       "name": "酸辣白菜",
       "desc": "醋香开胃的快手素菜",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -3563,7 +3514,6 @@ window.DISHES_100 = {
       "name": "手撕包菜",
       "desc": "干香微辣的国民素菜",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -3617,7 +3567,6 @@ window.DISHES_100 = {
       "name": "蒜蓉西兰花",
       "desc": "清爽健康的快手焯菜",
       "tags": [
-        "素菜",
         "清淡",
         "快手"
       ],
@@ -3660,7 +3609,6 @@ window.DISHES_100 = {
       "name": "蚝油生菜",
       "desc": "脆嫩鲜美的焯炒青菜",
       "tags": [
-        "素菜",
         "清淡",
         "快手"
       ],
@@ -3703,7 +3651,6 @@ window.DISHES_100 = {
       "name": "干煸豆角",
       "desc": "皱皮焦香的经典素菜",
       "tags": [
-        "素菜",
         "川菜"
       ],
       "items": [
@@ -3757,7 +3704,6 @@ window.DISHES_100 = {
       "name": "清炒时蔬",
       "desc": "少油少盐的健康青菜",
       "tags": [
-        "素菜",
         "清淡",
         "快手"
       ],
@@ -3794,7 +3740,6 @@ window.DISHES_100 = {
       "name": "凉拌木耳",
       "desc": "爽脆开胃的凉菜",
       "tags": [
-        "素菜",
         "凉拌",
         "快手"
       ],
@@ -3849,7 +3794,6 @@ window.DISHES_100 = {
       "name": "红烧茄子",
       "desc": "软糯入味的下饭素菜",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -3909,7 +3853,6 @@ window.DISHES_100 = {
       "name": "鱼香茄子",
       "desc": "酸甜微辣的茄子经典",
       "tags": [
-        "素菜",
         "川菜",
         "下饭"
       ],
@@ -3970,7 +3913,6 @@ window.DISHES_100 = {
       "name": "蒜蓉粉丝蒸娃娃菜",
       "desc": "鲜甜多汁的蒸菜",
       "tags": [
-        "素菜",
         "蒸菜"
       ],
       "items": [
@@ -4027,12 +3969,12 @@ window.DISHES_100 = {
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "dairy",
           "name": "皮蛋",
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "dairy",
           "name": "咸鸭蛋",
           "optional": false
         },
@@ -4068,7 +4010,6 @@ window.DISHES_100 = {
       "name": "清炒菠菜",
       "desc": "补铁快手绿叶菜",
       "tags": [
-        "素菜",
         "清淡",
         "快手"
       ],
@@ -4105,7 +4046,6 @@ window.DISHES_100 = {
       "name": "芹菜炒香干",
       "desc": "爽脆有嚼劲的素小炒",
       "tags": [
-        "素菜",
         "下饭"
       ],
       "items": [
@@ -4115,7 +4055,7 @@ window.DISHES_100 = {
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "香干",
           "optional": false
         },
@@ -4151,7 +4091,7 @@ window.DISHES_100 = {
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -4365,7 +4305,7 @@ window.DISHES_100 = {
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -4449,7 +4389,6 @@ window.DISHES_100 = {
       "name": "蛋炒饭",
       "desc": "清冰箱必备的一人食",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -4494,9 +4433,6 @@ window.DISHES_100 = {
       "id": "yangzhou_fried_rice",
       "name": "扬州炒饭",
       "desc": "配料丰富的经典炒饭",
-      "tags": [
-        "主食"
-      ],
       "items": [
         {
           "zone": "grain",
@@ -4550,7 +4486,6 @@ window.DISHES_100 = {
       "name": "酱油炒饭",
       "desc": "酱香浓郁的两步炒饭",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -4597,7 +4532,6 @@ window.DISHES_100 = {
       "name": "咖喱饭",
       "desc": "一锅出的一人食主餐",
       "tags": [
-        "主食",
         "咖喱"
       ],
       "items": [
@@ -4646,7 +4580,6 @@ window.DISHES_100 = {
       "name": "葱油拌面",
       "desc": "葱香扑鼻的快手面食",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -4734,7 +4667,6 @@ window.DISHES_100 = {
       "name": "阳春面",
       "desc": "清汤挂面的朴素主食",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -4781,9 +4713,6 @@ window.DISHES_100 = {
       "id": "zhajiang_noodle",
       "name": "炸酱面",
       "desc": "酱香浓郁的北方面食",
-      "tags": [
-        "主食"
-      ],
       "items": [
         {
           "zone": "grain",
@@ -4827,7 +4756,6 @@ window.DISHES_100 = {
       "name": "老干妈炒饭",
       "desc": "辣香开胃的懒人炒饭",
       "tags": [
-        "主食",
         "快手",
         "辣"
       ],
@@ -4875,7 +4803,6 @@ window.DISHES_100 = {
       "name": "培根炒卷心菜",
       "desc": "咸香快手的异国小炒",
       "tags": [
-        "肉菜",
         "快手"
       ],
       "items": [
@@ -4916,7 +4843,6 @@ window.DISHES_100 = {
       "name": "火腿炒饭",
       "desc": "咸香粒粒分明的炒饭",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -4967,7 +4893,6 @@ window.DISHES_100 = {
       "name": "鸡蛋灌饼",
       "desc": "外酥里嫩的街头主食",
       "tags": [
-        "主食",
         "快手"
       ],
       "items": [
@@ -5013,12 +4938,12 @@ window.DISHES_100 = {
       ],
       "items": [
         {
-          "zone": "other",
+          "zone": "dairy",
           "name": "皮蛋",
           "optional": false
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆腐",
           "optional": false
         },
@@ -5061,7 +4986,6 @@ window.DISHES_100 = {
       "name": "蒜蓉金针菇",
       "desc": "鲜滑入味的快手菜",
       "tags": [
-        "素菜",
         "快手"
       ],
       "items": [
@@ -5156,7 +5080,6 @@ window.DISHES_100 = {
       "name": "速冻水饺",
       "desc": "囤货就能救急的主食",
       "tags": [
-        "主食",
         "冷冻",
         "快手"
       ],
@@ -5193,7 +5116,6 @@ window.DISHES_100 = {
       "name": "麻辣烫",
       "desc": "自选涮菜麻辣烫",
       "tags": [
-        "川渝",
         "宵夜"
       ],
       "type": "肉菜",
@@ -5270,12 +5192,12 @@ window.DISHES_100 = {
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "frozen",
           "name": "冻豆腐",
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆皮",
           "optional": true
         },
@@ -5291,7 +5213,6 @@ window.DISHES_100 = {
       "name": "火锅",
       "desc": "在家涮火锅",
       "tags": [
-        "川渝",
         "聚会"
       ],
       "type": "肉菜",
@@ -5372,12 +5293,12 @@ window.DISHES_100 = {
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "frozen",
           "name": "冻豆腐",
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆皮",
           "optional": true
         },
@@ -5398,7 +5319,6 @@ window.DISHES_100 = {
       "name": "冒菜",
       "desc": "单人麻辣冒菜",
       "tags": [
-        "川渝",
         "宵夜"
       ],
       "type": "肉菜",
@@ -5460,7 +5380,7 @@ window.DISHES_100 = {
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆皮",
           "optional": true
         },
@@ -5475,9 +5395,6 @@ window.DISHES_100 = {
       "id": "malaxiangguo",
       "name": "麻辣香锅",
       "desc": "干香麻辣一锅炒",
-      "tags": [
-        "川渝"
-      ],
       "type": "肉菜",
       "cuisine": "川渝",
       "items": [
@@ -5546,12 +5463,12 @@ window.DISHES_100 = {
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "豆皮",
           "optional": true
         },
         {
-          "zone": "other",
+          "zone": "vegetable",
           "name": "腐竹",
           "optional": true
         },
