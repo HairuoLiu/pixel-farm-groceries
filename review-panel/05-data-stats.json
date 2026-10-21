@@ -1,0 +1,48 @@
+{
+  "total": 104,
+  "zones": 8,
+  "uniqueIngredients": 122,
+  "itemsAvg": 7.11,
+  "itemsMin": 3,
+  "itemsMax": 20,
+  "coreAvg": 2.58,
+  "coreMin": 1,
+  "lt3": [],
+  "core0": [],
+  "onceCount": 49,
+  "onceRatio": "40.2%",
+  "zoneConflict": [],
+  "typeCnt": {
+    "素菜": 30,
+    "肉菜": 47,
+    "汤羹": 11,
+    "主食": 16
+  },
+  "cuiCnt": {
+    "中国家常": 81,
+    "川渝": 17,
+    "日料": 3,
+    "西餐": 1,
+    "粤式": 2
+  },
+  "missIcon": [],
+  "unusedMap": [],
+  "aliasGroups": 11,
+  "emojiFields": [
+    "zones[vegetable].icon = \"🥬\"",
+    "zones[meat].icon = \"🥩\"",
+    "zones[seafood].icon = \"🐟\"",
+    "zones[seasoning].icon = \"🧂\"",
+    "zones[frozen].icon = \"🧊\"",
+    "zones[grain].icon = \"🍚\"",
+    "zones[dairy].icon = \"🥚\"",
+    "zones[other].icon = \"🛒\""
+  ],
+  "noSeason": [],
+  "nonHome": [
+    "potato_curry",
+    "fries",
+    "chicken_curry",
+    "curry_rice"
+  ]
+}

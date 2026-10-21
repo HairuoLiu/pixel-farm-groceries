@@ -1,0 +1,40 @@
+# —— 依赖 / 构建产物 ——
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# —— 本地调试与临时文件 ——
+_*.py
+_*.cjs
+_*.js
+_*.txt
+*.bak
+_font_tmp.css
+
+# —— 大体积且当前版本未使用的资产（本地保留，不入库）——
+# 菜品真实照片：第三阶段起菜品预览已改为纯文字，照片管线退役（资产备用）
+assets/dishes/
+# 照片抓取 / 像素化 / 评审拼图等一次性脚本与中间产物
+assets/src/
+assets/src_sheets/
+assets/review/
+assets/review_sheets/
+assets/contact_sheet.png
+assets/dishes.json
+assets/approve.json
+assets/CREDITS.md
+assets/fetch_candidates.py
+assets/fetch_photos.py
+assets/make_credits.py
+assets/pixelate.py
+assets/review_sheet.py
+assets/src_sheet.py
+
+# —— 评审过程证据截图与一次性探针脚本（约 3MB，报告正文已入库，截图本地保留）——
+review-panel/shots/
+review-panel/shots03/
+review-panel/shots08/
+review-panel/_*.py
+review-panel/_*.js
+review-panel/_*.json

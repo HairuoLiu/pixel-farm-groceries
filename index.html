@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <!-- H3：删掉 maximum-scale=1（它禁用了双指缩放，对视力障碍用户不友好） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>像素农场 · 采购记</title>
+  <meta name="description" content="选几道想吃的菜，自动生成按超市分区整理好的采购清单，可导出像素风清单图。" />
+  <meta name="theme-color" content="#A9724A" />
+  <!-- 中文像素字体（缝合像素字体 · 简体中子集，按 unicode-range 按需加载）
+       D2：70.9KB 的字体 CSS 原本是渲染阻塞资源。改为 preconnect + preload + 非阻塞加载，
+       首屏不再等它；字体文件本身仍按 unicode-range 懒加载。 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/@vp-tw/cjk-web-fonts-fusion-pixel-font@0.0.1/dist/12px/proportional/zh_hans/Fusion-Pixel-12px-Proportional-Simplified-Chinese.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vp-tw/cjk-web-fonts-fusion-pixel-font@0.0.1/dist/12px/proportional/zh_hans/Fusion-Pixel-12px-Proportional-Simplified-Chinese.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vp-tw/cjk-web-fonts-fusion-pixel-font@0.0.1/dist/12px/proportional/zh_hans/Fusion-Pixel-12px-Proportional-Simplified-Chinese.css" />
+  </noscript>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button id="backBtn" class="icon-btn" aria-label="返回首页" hidden></button>
+      <div class="brand">
+        <span class="brand-ico" id="brandIco"></span>
+        <span class="brand-name">像素农场 · 采购记</span>
+      </div>
+      <button id="cartPill" class="cart-pill" aria-label="查看菜篮" hidden>
+        <span class="cart-ico" id="cartIco"></span>
+        <span id="cartCount" class="cart-num">0</span>
+      </button>
+    </header>
+
+    <main class="main">
+      <!-- ===== L1 一级：搜索 / 随机 ===== -->
+      <section id="home" class="screen">
+        <p class="eyebrow">FARM QUEST · 今日任务</p>
+        <h1 class="hero">今天想吃点啥？</h1>
+        <p class="hero-sub">搜菜名，或者让农场帮你摇几道～</p>
+
+        <form id="searchForm" class="search-wrap" autocomplete="off">
+          <span class="search-ico" id="searchIco"></span>
+          <input id="search" class="input" type="search" placeholder="搜索菜名，如 番茄炒蛋" aria-label="搜索菜名" />
+          <button type="submit" class="search-go">搜一搜</button>
+        </form>
+
+        <div id="noMatch" class="no-match" hidden>
+          <p>没找到「<span id="noMatchQ"></span>」这道菜。换换关键词，或者随便来四个？</p>
+        </div>
+
+        <p class="section-label">— 去田里看看 · 按菜类 —</p>
+        <div id="typeGrid" class="rgrid"></div>
+
+        <button id="randomFour" class="rbtn primary rbtn-block">
+          <span class="btn-ico" id="diceIco"></span>掷骰子 · 随便来四个
+        </button>
+
+        <button id="cuisineToggle" class="rbtn ghost rbtn-block cuisine-toggle">
+          <span><span class="btn-ico" id="globeIco"></span>尝尝别的口味 · 按菜系</span>
+          <span class="chev">▼</span>
+        </button>
+        <div id="cuisineWrap" class="cuisine-wrap" hidden>
+          <div id="cuisineGrid" class="rgrid"></div>
+        </div>
+      </section>
+
+      <!-- ===== L2 二级：挑菜（4 道 / 搜索结果）===== -->
+      <section id="select" class="screen" hidden>
+        <div class="select-head">
+          <h2 id="selectTitle" class="screen-title"></h2>
+          <p id="selectHint" class="select-hint"></p>
+        </div>
+        <div id="dishGrid" class="dish-grid"></div>
+        <div class="select-foot" id="selectFoot">
+          <button id="rerollBtn" class="rbtn ghost rbtn-block">
+            <span class="btn-ico" id="refreshIco"></span>换一批
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== L3 三级：市集导览（分区闯关）===== -->
+      <section id="guide" class="screen" hidden>
+        <div class="guide-head">
+          <div id="zoneBadge" class="zone-badge"></div>
+          <div id="guideProgress" class="guide-progress"></div>
+        </div>
+        <div id="zonePage" class="zone-page"></div>
+        <button id="viewOverview" class="rbtn ghost rbtn-block">
+          <span class="btn-ico" id="clipIco"></span>查看全部清单
+        </button>
+        <div class="guide-foot">
+          <button id="prevZone" class="rbtn ghost"><span class="btn-ico" id="prevIco"></span>上一区</button>
+          <button id="nextZone" class="rbtn primary">下一区<span class="btn-ico" id="nextIco"></span></button>
+        </div>
+      </section>
+
+      <!-- ===== L3b 总览页：一次看全部分区（默认完成态）===== -->
+      <section id="overview" class="screen" hidden>
+        <div class="guide-head">
+          <div class="ov-badge">
+            <span class="zb-ico" id="ovIco"></span>
+            <span class="zb-name">全部清单</span>
+          </div>
+          <div id="ovProgress" class="guide-progress"></div>
+        </div>
+        <div id="ovPage" class="ov-page"></div>
+        <button id="ovImg" class="rbtn primary rbtn-block">
+          <span class="btn-ico" id="shareIco"></span>生成清单图（可分享 / 截图）
+        </button>
+        <div class="guide-foot">
+          <button id="ovBack" class="rbtn ghost"><span class="btn-ico" id="ovBackIco"></span>返回导览</button>
+          <button id="ovDone" class="rbtn primary"><span class="btn-ico" id="flagIco"></span>完成采购</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- L2 悬浮「去采购」：菜篮累积后结算 -->
+    <button id="floatCheckout" class="float-checkout" hidden>
+      <span class="fc-emoji" id="fcIco"></span>
+      <span class="fc-text">去市集采购</span>
+      <span id="floatCount" class="fc-badge">0</span>
+    </button>
+
+    <!-- 轻提示（保存失败 / 移出菜篮撤销 / 导出失败等） -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- 分享清单图弹层（导出 PNG，可保存/分享到任意渠道） -->
+    <div id="shareModal" class="share-modal" hidden>
+      <div class="share-backdrop" id="shareBackdrop"></div>
+      <div class="share-sheet">
+        <div class="share-head"><span class="btn-ico" id="shareHeadIco"></span>采购清单图</div>
+        <img id="shareImg" class="share-img" alt="采购清单图" />
+        <div class="share-actions">
+          <button id="shareSave" class="rbtn primary rbtn-block">保存图片</button>
+          <button id="shareNative" class="rbtn ghost rbtn-block">分享到手机</button>
+          <button id="shareClose" class="rbtn ghost rbtn-block">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="icons.js"></script>
+  <script src="ingredient-icons.js"></script>
+  <script src="data.js"></script>
+  <script src="data-100.js"></script>
+  <!-- D1：原先这里白下载 218KB 的 supabase-js（占传输量 42%），而 analytics.js 的配置为空、
+       从未真正调用过。已移除，埋点改为本地环形队列（见 analytics.js / G3）。 -->
+  <script src="analytics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
