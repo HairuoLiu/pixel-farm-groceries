@@ -3,7 +3,7 @@
 > 选几道想吃的菜 → 自动按超市分区生成采购清单 → 导出像素风清单图。
 > 一个 16-bit 农场游戏外壳里的「今晚吃什么」决策工具。
 
-**在线演示**：见下文「运行方式」（静态站点，无构建、无后端依赖）。
+**在线演示**：<https://pixel-farm-groceries.app.workbuddy.host/?sharecode=7TXN4ZUHNR>
 
 ---
 
