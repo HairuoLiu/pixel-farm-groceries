@@ -4,7 +4,7 @@
 > 一个 16-bit 农场游戏外壳里的「今晚吃什么」决策工具。
 
 **在线演示**：<https://pixel-farm-groceries.app.workbuddy.host/?sharecode=7TXN4ZUHNR>
-**离线单文件版**：双击 `grocery-reminder-offline.html` 即可运行（无需服务器、无需网络）
+**离线单文件版**：`node assets/build_offline.js` 生成 `grocery-reminder-offline.html`（1MB，无需服务器、无需网络，`file://` 双击即用；该文件为构建产物，不入库）
 
 ---
 

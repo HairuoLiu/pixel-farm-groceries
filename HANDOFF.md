@@ -10,7 +10,7 @@
 125 个手绘 12×12 像素图标（自研 ASCII 图标引擎），canvas 导出像素清单图，支持离线。
 
 - 在线演示：https://pixel-farm-groceries.app.workbuddy.host/
-- 离线单文件：`grocery-reminder-offline.html`（file:// 双击即用，零网络请求）
+- 离线单文件：`node assets/build_offline.js` 生成 `grocery-reminder-offline.html`（file:// 双击即用，零网络请求；构建产物，已 gitignore）
 - 参赛：WorkBuddy「1024 造物挑战」应用创作大赛
 
 ## 2. 当前状态（全部 ✅）
@@ -56,7 +56,11 @@ node assets/build_offline.js        # 改 index.html 后必须重建离线版
 - 内联 `data-key` 等属性也必须过 `esc()`（H1 契约）。
 - Bash 工具里 `(cmd &)` 的后台进程会随会话回收；长跑服务用 `run_in_background=true`。
 - 本机 git 无身份配置，提交时用 `git -c user.name="hairuoliu" -c user.email="hairuoliu@users.noreply.github.com"`。
-- GitHub 推送走 MCP `mcp__github__*` 连接器（身份 HairuoLiu），本地 git 无凭据。
+- **GitHub 推送**：本机 git 凭据（`~/.workbuddy/git-creds/.git-credentials` 的 PAT）曾过期；
+  MCP 连接器（身份 HairuoLiu）可读写已有仓库但**不能建库**（403）。可用路径：
+  ① 用户提供新 PAT → `git config --global url.https://git:<PAT>@github.com/.insteadOf https://github.com/`
+     （同时 unset credential.helper）→ 后台 push（`run_in_background` + 放行网络）→ **必须 `git ls-remote` 反查**；
+  ② MCP `push_files` 只适合小仓库（本仓库 2.8MB 含 32 个 PNG，内联推送 token 成本不可行）。
 
 **目录速览**：`index.html`（外壳）/ `styles.css`（设计系统）/ `app.js`（全部逻辑，约 1200 行）/
 `icons.js` + `ingredient-icons.js`（图标引擎）/ `data-100.js`（主数据集）/ `analytics.js`（本地埋点）/

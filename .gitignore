@@ -12,6 +12,9 @@ _*.txt
 *.bak
 _font_tmp.css
 
+# —— 构建产物：离线单文件版由 node assets/build_offline.js 生成，不入库（可随时重建）——
+grocery-reminder-offline.html
+
 # —— 大体积且当前版本未使用的资产（本地保留，不入库）——
 # 菜品真实照片：第三阶段起菜品预览已改为纯文字，照片管线退役（资产备用）
 assets/dishes/
