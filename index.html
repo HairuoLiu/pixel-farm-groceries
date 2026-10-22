@@ -5,11 +5,23 @@
   <!-- H3：删掉 maximum-scale=1（它禁用了双指缩放，对视力障碍用户不友好） -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>像素农场 · 采购记</title>
-  <meta name="description" content="选几道想吃的菜，自动生成按超市分区整理好的采购清单，可导出像素风清单图。" />
+  <meta name="description" content="把「今天吃什么」变成一场 16-bit 农场冒险——选几道菜，闯 8 个市集分区，导出一张能直接发给家人的像素清单图。104 道菜 · 122 种食材 · 125 个手绘像素图标，零框架零后端。" />
   <meta name="theme-color" content="#A9724A" />
   <!-- G13：PWA 元数据（可加主屏、独立窗口、主题色、离线可用） -->
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <!-- 参赛包装：链接发到微信/评审群时的分享卡片（OG 图由 assets/gen_brand_assets.py 生成） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="像素农场 · 采购记" />
+  <meta property="og:description" content="选几道菜，闯 8 个市集分区，导出一张能直接发给家人的像素清单图。零框架 · 零后端 · 离线可玩。" />
+  <meta property="og:image" content="https://pixel-farm-groceries.app.workbuddy.host/assets/og-image.png" />
+  <meta property="og:url" content="https://pixel-farm-groceries.app.workbuddy.host/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="像素农场 · 采购记" />
+  <meta name="twitter:description" content="选几道菜，闯 8 个市集分区，导出一张能直接发给家人的像素清单图。零框架 · 零后端 · 离线可玩。" />
+  <meta name="twitter:image" content="https://pixel-farm-groceries.app.workbuddy.host/assets/og-image.png" />
   <!-- 中文像素字体（缝合像素字体 · 简体中子集，按 unicode-range 按需加载）
        D2：70.9KB 的字体 CSS 原本是渲染阻塞资源。改为 preconnect + preload + 非阻塞加载，
        首屏不再等它；字体文件本身仍按 unicode-range 懒加载。 -->

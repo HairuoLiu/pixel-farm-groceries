@@ -120,6 +120,9 @@ grocery-reminder-pixel/
 - 字体：[Fusion Pixel 12px Proportional Simplified Chinese](https://github.com/TakWolf/fusion-pixel-font)（缝合像素字体，SIL OFL）
 - 灵感：星露谷语言 / 16-bit 农场游戏的界面节奏
 
-## License
+## License & Credits
 
-MIT
+- **代码**：MIT（见 [LICENSE](LICENSE)）
+- **字体**：Fusion Pixel 12px Proportional SC（SIL OFL 1.1，CDN 子集懒加载）
+- **像素图标**：125 个全部为本项目原创手绘 ASCII 网格，无第三方素材
+- 完整声明见 [CREDITS.md](CREDITS.md)
